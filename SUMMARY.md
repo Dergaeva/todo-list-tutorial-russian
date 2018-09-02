@@ -14,7 +14,7 @@
 * [Интерфейс](interface.md)
 * [Как добавлять элементы](add-items.md)
 * [Рефакторинг компонентов приложения](refactor-app-component.md)
-* [Добавление стилей(adding-style.md)
+* [Добавление стилей](adding-style.md)
 * [Создание Сервиса](creating-a-service.md)
 * [Добавление элементов с помощью Сервиса](add-items-using-the-service.md)
 * [Local storage](local-storage.md)
