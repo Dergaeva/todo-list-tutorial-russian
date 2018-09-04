@@ -17,4 +17,3 @@
 ![](.gitbook/assets/slogen%20%281%29.png)
 
 **О главном авторе:** Shmuela Jacobs является senior front-end разработчиком и консультантом в изучении Angular. Во время учебы \(M.Sc. in Information Management Engineering and B.Sc. in Physics\) она обьединила свою страсть к програмированию и обучению как разработчик программного обеспечения, ассистент преподавателя, гид в музеи науки, и исследователь. На сегодняшний день она продолжает пользоваться полученными навыками как full-time front-end разработчик, делится своими знаниями и опытом на встречах и конференциях. Shmuela основатель ngGirls и организатор [Angular AfterHours meetup group](https://www.meetup.com/Angular-AfterHours/).
-
