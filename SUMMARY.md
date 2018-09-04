@@ -24,4 +24,3 @@
 * [Улучшаем todo-item компонент](enrich-the-todo-item-component.md)
 * [Приложение 1: Генерируем новый проект](appendix-1-generating-a-new-project.md)
 * [Приложение 2: Дополнения к руководству](appendix-2-tutorial-extensions.md)
-
