@@ -1,33 +1,33 @@
-# A new component
+# Новый компонент
 
-In this chapter we will write a whole new component. It will allow us to add an item to the todo list. It will be composed of the HTML elements `input` and `button`. We will call it Input-Button-Unit.
+В этой главе мы создадим совершенно новый компонент. Это позволит нам добавить элемент в todo list, который будет содержать HTML элементы `input` и `button`. Назовем его Input-Button-Unit.
 
-We'll use the Angular CLI to generate all the needed files and boilerplate for us. The Angular CLI takes commands in a terminal window. This doesn't mean that we have to stop the process `ng serve`. Instead, we can open another terminal window or tab and run the additional commands from there. The changes will be reflected immediately in the browser.
+Используем Angular CLI для создания всех необходимых файлов и шаблонов. Angular CLI выполняет команды в окне терминала, что означает, что мы должны остановить процесс `ng serve`. Вместо этого, можно открыть новое окно терминала или вкладку и запустить дополнительные команды оттуда. Изменения будут немедленно отображены в браузере.
 
-Open another terminal tab and run:
+Откройте другую вкладку терминала и запустите:
 
 ```text
 ng g c input-button-unit
 ```
 
-As we've seen before, `ng` is the command for using the Angular CLI. `g` is a shorthand for `generate`. `c` is a shorthand for `component`. `input-button-unit` is the name we give to the component.
+Как мы видели ранее, `ng`  команда также используется в Angular CLI. `g` это сокращенное `generate`. `c` сокращенное `component`. `input-button-unit` -  имя которое мы присваиваем компоненту.
 
-So the long version of the command is \(don't run it\):
+Таким образом, полная версия команды \(не запускайте ее\):
 
 ```text
 ng generate component input-button-unit
 ```
 
-Let's take a look of what the Angular CLI created for us.
+Давайте посмотрим, что Angular CLI создал для нас.
 
-It created a new folder called `src/app/input-button-unit`. There are three files there \(or four if you're not using inline-template\):
+А именно, новую папку `src/app/input-button-unit` с тремя файлами \(или четырьмя, если вы не используете встроенный шаблон\):
 
-* `input-button-unit.component.css` - this is where the style that's specific to the component will be placed.
-* `input-button-unit.component.spec.ts` - this is a file for testing the component. We will not deal with it in this tutorial.
-* `input-button-unit.component.ts` - this is the component file where we will define its logic.
-* `input-button-unit.component.html` - this is the HTML template file, if you're not using inline-template.
+* `input-button-unit.component.css` - здесь будут размещены стили, отдельно для данного компонента.
+* `input-button-unit.component.spec.ts` - файл для тестирования компонента. Не будем использоваться в учебном пособии.
+* `input-button-unit.component.ts` - файл компонента, в котором будет определяться логика.
+* `input-button-unit.component.html` -  файл шаблона HTML, если вы не используете встроенный шаблон.
 
-Open the file `input-button-unit.component.ts`. You can see that the Angular CLI has generated the component's configuration for us, including its selector, which is the name we gave preceded by the prefix `app`, and a default template:
+Откройте файл `input-button-unit.component.ts`. Вы увидите Angular CLI создал для конфигурацию компонента, включая селектор,  имя которого начинается с префикса `app`, и шаблон по умолчанию:
 
 {% code-tabs %}
 {% code-tabs-item title="src/app/input-button-unit/input-button-unit.component.ts" %}
@@ -45,13 +45,13 @@ Open the file `input-button-unit.component.ts`. You can see that the Angular CLI
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-> The prefix `app` will be added to the component selector of all the components you will generate. This is to avoid name conflicts with other components and HTML elements. For instance, if you create a component named input it will not conflict with HTML's `<input />` element, since its selector will be `app-input`.
+> Префикс `app` будет добавлен в селектор элемента всех компонентов, которые вы создадите.Это необходимо для того, чтобы избежать конфликта имен с другими компонентами и элементами HTML. Например, если вы создадите компонент с именем input, он не будет конфликтовать с HTML's `<input />` элементом, т.к. имя селектора будет  `app-input`.
 >
-> `app` is the default prefix, which is good for your main application. However, if you're writing a library of components to be used in other projects, you should choose a different prefix. For example, the [Angular Material](https://material.angular.io/) library uses the prefix `mat`. You can create a project stating the prefix of your choice using the flag `--prefix`, or change it afterwards in the file `.angular-cli.json`.
+> `app` префикс по умолчанию, который удобен для вашего основного приложения. Однако, если вы пишете библиотеку компонентов, которые будут использоваться в других проектах, лучше выбрать другой префикс. Например,  [Angular Material](https://material.angular.io/) библиотека использует префикс `mat`. Вы можете создать проект с указанием префикса на выбор, используя флаг `--prefix`, или изменить его позже в файле`.angular-cli.json`.
 
-We can use this component as-is and see the result!
+Мы будем использовать этот компонент как есть и наблюдать за результатом!
 
-Open the root component file, `app.component.ts` and add the app-input-button-unit tag inside the template \(remember we refactored the root component to have an inline template\):
+Откройте файл корневого компонента, `app.component.ts` и добавьте app-input-button-unit тег внутрь шаблона\(помните, что мы рефакторим корневой компонент во встроенном шаблоне\):
 
 {% code-tabs %}
 {% code-tabs-item title="src/app/app.component.ts" %}
@@ -67,9 +67,9 @@ template: `
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-Check what's new in the browser!
+Проверьте, что нового в браузере!
 
-Let's add some content in our new component. First, add a `title` member which we will use as the todo item title:
+Давайте добавим контент в наш новый компонент. Для начала, добавим `title` который будет использован как названия:
 
 {% code-tabs %}
 {% code-tabs-item title="src/app/input-button-unit/input-button-unit.component.ts" %}
@@ -80,9 +80,9 @@ export class InputButtonUnitComponent implements OnInit {
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-It will not interfere with the `app-root` component's `title`, since each component's content is encapsulated within it.
+Он не будет вмешиваться в `title` компонента `app-root`, поскольку содержимое каждого компонента инкапсулировано внутри него.
 
-Next, add an interpolation of the title member in the template:
+Затем добавьте интерполяцию элемента title в шаблон:
 
 {% code-tabs %}
 {% code-tabs-item title="src/app/input-button-unit/input-button-unit.component.ts" %}
@@ -97,7 +97,7 @@ template: `
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-Check out the result!
+Проверьте результат!
 
-This component doesn't do much at this point. In the following chapters, we will learn about the component class, and then implement the component's logic.
+Этот компонент не достаточно пока что функционален. В следующих главах, мы узнаем о классе компонента, а затем реализуем его логику.
 
