@@ -1,16 +1,16 @@
-# Add items
+# Добавим элементы
 
-We want to add items to our list. With Angular, we can do this easily and see the item added immediately. We will do this from within the `input-button-unit` component we've created before. We'll change it so when hitting the Enter key or clicking the submit button, the value of the input box will become the title of the new item, and the new item will be added to the list.
+Мы хотим добавить элементы в наш список. С Angular, мы можем сделать это легко и увидеть добавленный элемент немедленно. Сделаем это внутри `input-button-unit` компонента, который создали ранее. Изменения наступят при нажатии на клавишу Enter или нажав кнопку отправки, значение в поле ввода станет заголовком нового элемента, и новый элемент будет добавлен в список.
 
-But we don't want the `input-button-unit` component to be responsible for adding a new item to the list. We want it to have minimal responsibility, and **delegate the action to its parent component**. One of the advantages of this approach is that this component will be reusable, and can be attached to a different action in different situations.
+Но мы не хотим, чтобы `input-button-unit` компонент отвечал за добавление нового элемента в список. Мы хотим чтобы у него была минимальная ответственность, и **делегируем действие его родительскому компоненту**. Одно из преимуществ такого подхода заключается в том, что этот компонент может быть повторно использован, и могжет быть привязан к другому действию в разных ситуациях.
 
-For example, in our case, we'll be able to use the `input-button-unit` inside the `todo-item` component. Then we'll have an input box for each item and we'll be able to edit the item's title. In this case, pressing the Enter key or the Save button will have a different effect.
+Например, в нашем случае, мы сможем использовать `input-button-unit` внутри `todo-item` компонента. Тогда будет поле ввода для каждого элемента и сможем редактировать заголовок элемента. В этом случае, нажатие клавиши «Ввод» или кнопка «Сохранить» будут иметь разные действия.
 
-So what we actually want to do is to **emit an event** from the `input-button-unit` component whenever the title is changed. With Angular, we can easily define and emit events from our components!
+Так что мы действительно хотим сделать, это  **вызвать событие** с `input-button-unit` компонента каждый раз, когда заголовок изменяется. С Angular, мы можем легко определять и вызывать события из наших компонентов!
 
 ## @Output\(\)
 
-Add the following line inside the `InputButtonUnitComponent` Class, which defines an output for the component:
+Добавьте строку внутри `InputButtonUnitComponent` класса, которая определяет выход для компонента:
 
 {% code-tabs %}
 {% code-tabs-item title="src/app/input-button-unit.component.ts" %}
@@ -20,9 +20,9 @@ Add the following line inside the `InputButtonUnitComponent` Class, which define
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-The output property is called `submit`. It's of type `EventEmitter` which has the method `emit`. `EventEmitter` is a Generic Type - we pass to it another type which will be used internally, in this case it's `string`. It's the type of the object that will be emitted by the `emit` method. 
+Свойство вывода называется `submit`. Это тип `EventEmitter` у которого есть метод `emit`. `EventEmitter` это Общий Тип - мы передаем ему другой тип, который будет использоваться внутри, в этом случае `string`. Это тип объекта, который будет выделен спомощью `emit` метода. 
 
-Make sure that `Output` and `EventEmitter` are added to the import declaration in the first line of the file:
+Убедитесь, что `Output` и `EventEmitter` добавлены в импорт в первой строке файла:
 
 {% code-tabs %}
 {% code-tabs-item title="src/app/input-button-unit.component.ts" %}
@@ -32,7 +32,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-Now, whenever we call `this.submit.emit()`, an event will be emitted to the parent component. Let's call it in the `changeTitle` method:
+Сейчас, когда мы вызовем `this.submit.emit()`, произойдет событие в родительском компоненте. Даввайте вызовем его в `changeTitle` методе:
 
 {% code-tabs %}
 {% code-tabs-item title="src/app/input-button-unit.component.ts" %}
@@ -44,13 +44,13 @@ changeTitle(newTitle: string) {
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-We delegate everything to the parent component - even actually changing the title of the item if needed. 
+Мы делегируем все родительскому компоненту - даже фактически меняя заголовок элемента, при необходимости. 
 
-We pass `newTitle` when we emit the event. Whatever we pass in `emit()` will be available for the parent as `$event`.
+Передаем `newTitle` при вызове события. Чтобы мы не передавали в  `emit()` это будет доступно для родителя в `$event`.
 
-Nothing else is changed in the `todo-input` component. The events emitted from `keyup.enter` and `click` still call the same method, but the method itself has changed.
+Нисего не меняется в `todo-input` компоненте. События выполняющиеся на `keyup.enter` и `click` попрежнему вызывают тот же метод, но сам метод изменился.
 
-The method name may seem irrelevant right now. Let's change it to something more appropriate: `submitValue`. You can use the IDE tools to refactor the method name - make sure that it is changed in the template as well.
+Поначалу имя метода может показаться неуместным. Давайте перейдем к чему-то более подходящему: `submitValue`. Вы можете использовать инструменты IDE для рефакторинга имени метода - убедитесь, что он также изменен в шаблоне.
 
 {% code-tabs %}
 {% code-tabs-item title="src/app/input-button-unit.component.ts" %}
@@ -78,9 +78,9 @@ template: `
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-### Listening to the event
+### Прослушивание события
 
-Now all we need to do is catch the event in the parent component and attach logic to it. Go to the `app-root` component and bind to the `submit` event in the `<app-input-butoon-unit>` component:
+Теперь все, что нам нужно сделать, это поймать событие в родительском компоненте и дпбавить к нему логику. Перейдите к `app-root` компоненту и привяжите  `submit` событие к  `<app-input-butoon-unit>` компоненту:
 
 {% code-tabs %}
 {% code-tabs-item title="src/app/app.component.ts" %}
@@ -90,7 +90,7 @@ Now all we need to do is catch the event in the parent component and attach logi
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-Now all that's left is to implement the `addItem` method, which receives a string, creates an object with the string as the `title` property, and adds it to the list:
+Все, что осталось - это реализовать `addItem` метод, который получает строку ,и создает объект со свойством  `title`, затем добавьте его в список:
 
 {% code-tabs %}
 {% code-tabs-item title="src/app/app.component.ts" %}
@@ -102,9 +102,9 @@ addItem(title: string) {
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-Try it out - enter a new todo item title in the input field and submit it!
+Попробуйте - введите новый заголок в поле ввода и отправьте его!
 
-**Note:** We're using **ES6 Object Property Value Shorthand**  to construct the todo item object. If we use a variable with the same name of the object's property to which we want to assign the variable's value to, we can use this shorthand notation. In our case, `{ title }` is equivalent to `{ title: title }`.  If the string was stored in a variable with a different name, we couldn't have used the shorthand. For example: 
+**Примечание:** Используется **ES6 Object Property Value Shorthand**  для создания объекта item todo. Если мы используем переменную с тем же именем что и свойство, мы можем использовать сокращенную запись. В нашем случае, `{ title }` эквивалентно `{ title: title }`. Если строка хранится в переменной под другим именем , мы не могли бы использовать короткую запись. Например: 
 
 {% code-tabs %}
 {% code-tabs-item title="code for example" %}
