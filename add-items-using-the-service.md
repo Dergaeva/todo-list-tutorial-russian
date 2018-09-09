@@ -1,10 +1,10 @@
-# Add Items Using the Service
+# Добавление элементов при помощи сервиса
 
-Let's improve our service by adding more abilities that will be used by our components. First - we'll implement adding an item to the list.
+Давайте улучшим наш сервис, добавив больше возможностей, которые будут использоваться компонентами. Во-первых - реализуем добавление элемента в список.
 
-## Adding an item
+## Добавление элемента
 
-We'll add a new method to the service, called `addItem`, like so:
+Добавим новый метод в сервис под названием `addItem`, следующим образом:
 
 {% code-tabs %}
 {% code-tabs-item title="src/app/services/todo-list.service.ts" %}
@@ -16,7 +16,7 @@ addItem(item: TodoItem) {
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-Now we can change our `list-manager` component to call the `addItem` method directly from the service:
+Теперь мы можем изменить `list-manager` компонент для вызова  `addItem` метода непосредственно спомощью сервиса:
 
 {% code-tabs %}
 {% code-tabs-item title="src/app/list-manager/list-manager.component.ts" %}
@@ -28,7 +28,7 @@ addItem(title: string) {
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-* Note that the service's method expects the whole item, while the component's method expects only the title and constructs the item. \(You may decide to let the service construct the item from the title.\)
-* There may be additional logic when calling these methods, i.e. saving the changes in a database \(which we'll implement later\).
-* A better way to handle data is using _immutable objects_, but that's a bigger topic than we can cover in this tutorial at the moment.
+* Обратите внимаение что метод сервиса ожидает весь элемент , в то время как метод компонента ожидает только заголовок и создает элемент. \(Вы можете разрешить сервису создавать элемент из заголовка.\)
+* Может быть дополнительная логика при вызове этих методов , т.е. сохранение изменений в базе данных \(будет реализовано позже\).
+* Лучший способ обработки данных - использовать _immutable objects_, но это более обширная тема, которая не будет рассмотрена в этом  руководсве.
 
