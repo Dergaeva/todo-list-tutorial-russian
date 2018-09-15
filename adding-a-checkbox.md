@@ -1,15 +1,15 @@
-# Adding a checkbox
+# Добавление чекбокса
 
-We are now able to interact with our todo list by removing items. But what if we want to complete items and still be able to see them in our list, with a line through the item's title? Enter the checkbox!
+Теперь мы можем взаимодействовать с нашим списком задач, удаляя элементы. Но что, если мы хотим, чтобы заполненные пункты оставались в списке списке, в виде зачеркнутого текста? Добавим чекбокс!
 
-We will look at:
+Расмотрим это подробнее:
 
-* Adding a checkbox
-* Adding functionality when you click the checkbox so that a CSS class, which adds a ~~strikethrough~~ style, is added to our todo items
-* Editing the todo title so that it responds to the checkbox
-* Adding a new CSS Class
+* Добавление чекбокса
+* Добавим функциональности,- при клике на чекбокс  CSS класс добавляет линию  к элементам, например ~~strikethrough~~ .
+* Отредактируем заголовок текста, чтобы он отрабатывал при клике на чекбокс.
+* Добавим новый  CSS класс.
 
-Let's go ahead and add a checkbox into our `todo-item.component.ts` file. Place the following code right before `{{ item.title }}`:
+Продолжим и добавим чекбокс в `todo-item.component.ts` файл. Поместите следующий код  перед `{{ item.title }}`:
 
 {% code-tabs %}
 {% code-tabs-item title="src/app/todo-item/todo-item.component.ts" %}
@@ -19,7 +19,7 @@ Let's go ahead and add a checkbox into our `todo-item.component.ts` file. Place 
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-Now, in order for the checkbox to do anything, we need to add a `click` event handler which we will call `completeItem`. We'll also add a css-class and wrap the element and the interpolation together for styling. Let's do that now:
+Теперь, чтобы чекбокс мог что-то делать, нам нужно добавить `click` обработчик событий, который мы будем называть `completeItem`. Мы также добавим css-класс и обернем элемент спомощью интерполяции. Давайте сделаем это прямо сейчас:
 
 {% code-tabs %}
 {% code-tabs-item title="src/app/todo-item/todo-item.component.ts" %}
@@ -34,7 +34,7 @@ Now, in order for the checkbox to do anything, we need to add a `click` event ha
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-When we click on the checkbox, it will run the `completeItem` method. Let's talk about what this method needs to accomplish. We want to be able to toggle some CSS styling on the item's title so that when the checkbox is checked it will have a  strikethrough. We also want to save the status of the item in the local storage. In order to achieve this, we will emit an update event with the new status of the item and catch it in the parent component.
+При клике на чекбокс, будет запущен `completeItem` метод. Давайте поговорим о том, что должен выполнять этот метод. Мы хотим   переключать стили CSS  на заголовке элемента поэтому, когда чекбокс установлен, текст заголовка станет зачеркнутым. Мы также хотим сохранить статус элемента в локальном хранилище. Для достижения этой цели , выделим обновленное событие с новым статусом элемента и отследим его в родительском элементе.
 
 ```javascript
 export class TodoItemComponent implements OnInit {
@@ -51,15 +51,15 @@ export class TodoItemComponent implements OnInit {
   }
 ```
 
-But wait! How is any of this going to affect the todo title when we're only touching the checkbox? Well, Angular has this wonderful directive called NgClass. This directive applies or removes a CSS class based on a boolean \(true or false\) expression. There are many ways to use this directive \(see the [NgClass directive documentation](https://angular.io/api/common/NgClass)\) but we will focus on using it like so:
+Одну минуточку! Как это повлияет на название списка когда мы только нажали на чекбокс? Что ж, в Angular есть замечательная директива  NgClass. С помощью нее применяется и удаляется  CSS класс согласно логике \(true or false\). Есть множество вариантов как использовать эту дерективу \(смотри [NgClass directive documentation](https://angular.io/api/common/NgClass)\) но мы сосредоточимся следующем применении:
 
 ```markup
 <some-element [ngClass]="{'first': true, 'second': true, 'third': false}">...</some-element>
 ```
 
-The 'first' and 'second' class will be applied to the element because they are given a true value, whereas the 'third' class will not be applied because it is given a false value. So this is where our earlier code comes into play. Our `completeItem` method will toggle between true and false values, thus dictating whether a class should be applied or removed.
+«Первый» и «Второй» класс будут применены к элементу т.к их значение true, в то время как  «третий» класс не будет применен т.к. его значение false. Так вот сейчас наш предыдущий код вступает в игру. Метод `completeItem` будет переключаться между  true и false значениями, таким образом диктуя какой из классов будет применен или удален.
 
-Let's wrap the item title in a `<span>`, then use NgClass to apply the styling:
+Давайте обернем заголовок элемента в  `<span>`, и используем NgClass для применения стилей:
 
 ```markup
 <span class="todo-title" [ngClass]="{'todo-complete': isComplete}">
@@ -67,7 +67,7 @@ Let's wrap the item title in a `<span>`, then use NgClass to apply the styling:
 </span>
 ```
 
-And finally, add the CSS to our `item.component.css` file:
+И наконец-то, добавим CSS в `item.component.css` файл:
 
 ```css
   .todo-complete {
@@ -75,5 +75,5 @@ And finally, add the CSS to our `item.component.css` file:
   }
 ```
 
-Voila! Checking the checkbox should apply a line through the todo title, and unchecking the checkbox should remove the line.
+Вуаля! При выборе чекбокса, заголовок должен стать перечеркнутым, а снятие флажка должно удалять линию.
 
