@@ -1,12 +1,12 @@
-# Adding Style
+# Добавление стиля
 
-With Angular, we can give style to components in a way that will not affect the rest of the application. It's a good practice to encapsulate the component-related style this way.
+C Angular, мы можем добавить стиль к компонентам таким образом, чтобы это не повлияло на остальную часть приложения. Это хорошаяпрактика инкапсуляции связанных компонентов.
 
-We can also state general style rules to be used across the application. This is good for creating the same look-and-feel for all our components. For example, we can decide what color palette will be used as the theme of our app. Then, if we'd like to change the colors or offer different themes, we can change it in just one place, instead of in each component.
+Мы также можем указать общие правила стиля которые будут использоваться в приложении. Это полезно для создания  внешнего вида интерфейса всех компонентов. Например, мы можем решать, какая цветовая палитра будет использована в теме нашего приложения. Затем, если захотим поменять цвета или использовать другие темы, сможем внести изменения только в одном месте, а не в каждом компоненте.
 
-Angular gives us different style encapsulation methods, but we'll stick to the default.
+Angular предлагает различные методы инкапсуляции стиля, но мы будем придерживаться стандартного.
 
-The Angular CLI has generated a general stylesheet for us at `src/style.css`. Paste the following code into this file:
+Angular CLI уже сгенерировал общую таблицу стилей `src/style.css`. Вставьте следующий код в этот файл:
 
 {% code-tabs %}
 {% code-tabs-item title="src/style.css" %}
@@ -68,7 +68,7 @@ ol, ul {
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-> How does the project know to look at this file? In the Angular CLI configuration file `.angular-cli.json` under `apps[0].styles`, you can state the files for the build tool to take and add to the project. You can open the browser's dev tools and see the style inside the element:
+> Откуда проекту знать, что нужно смотреть этот файл? В Angular CLI файл конфигурации `.angular-cli.json` снизу `apps[0].styles`, вы можете указать файлы ,которые хотите добавить в проект. Можете открыть инструменты браузера и увидеть стили элемента:
 >
 > ```markup
 > <html>
@@ -84,9 +84,9 @@ ol, ul {
 > </html>
 > ```
 
-We added style directly to elements \(`html, body, div, span, h1, p, ul, li`\) which will affect our app immediately. We also added styles using css-class selectors. We need to add these class names to the relevant elements.
+Мы добавили стили непосредственно к элементам \(`html, body, div, span, h1, p, ul, li`\) которые сразу же применились.Также добавили стили используя селекторы css-классов. Осталось добавить имена классов в соответствующие элементы.
 
-In `app-root` add the class `app-title` to the `h1` element:
+В `app-root` добавить класс `app-title` в `h1`:
 
 {% code-tabs %}
 {% code-tabs-item title="src/app/app.component.ts" %}
@@ -102,7 +102,7 @@ template: `
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-In `input-button-unit` add the `btn` class to the `button` element:
+В `input-button-unit` добавить `btn` класс в `button`:
 
 {% code-tabs %}
 {% code-tabs-item title="src/app/input-button-unit/input-button-unit.component.ts" %}
@@ -115,9 +115,9 @@ In `input-button-unit` add the `btn` class to the `button` element:
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-Now we'll add some component-specific styles.
+Теперь добавим некоторые специфичные для компонента стили.
 
-Add the following style to `input-button-unit.component.css`:
+Добавьте следующий стиль в `input-button-unit.component.css`:
 
 {% code-tabs %}
 {% code-tabs-item title="src/app/input-button-unit/input-button-unit.component.css" %}
@@ -141,11 +141,11 @@ Add the following style to `input-button-unit.component.css`:
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-How does this stylesheet get attached to the `input-button-unit` component? Look at the file `input-button-unit.component.ts`. One of the properties in the object passed to the `@Component` decorator is `styleUrls`. It's a list of stylesheets to be used by Angular, which encapsulates the style within the component.
+Как эти стили привязана к `input-button-unit` компонентам? Посмотрите файл `input-button-unit.component.ts`. Одно из свойств объекта передается в `@Component` с декоратором `styleUrls`. Это список стилей, которые будут использоваться в Angular, и которые инкапсулируются  внутри компонента.
 
-The selector :host is applied to the element that holds this component - `<app-input-button-unit>`. This element is not a part of this component's template. It appears in its parent's template. This is how we can control its style from within the component.
+Селектор :host применяется к элементу, который содержит этот компонент - `<app-input-button-unit>`. Этот элемент не является частью шаблона компонента. Он отображается в шаблоне родителя - это то, как мы можем контролировать стили изнутри компонента.
 
-We need to add the `todo-input` class to the `input` element:
+Нам нужно добавить `todo-input` класс  в `input` элемент:
 
 {% code-tabs %}
 {% code-tabs-item title="src/app/input-button-unit/input-button-unit.component.ts" %}
@@ -158,7 +158,7 @@ We need to add the `todo-input` class to the `input` element:
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-Now let's add style specifically to the `list-manager` component. Open the file `list-manager.component.css` and paste the following style inside:
+Теперь давайте добавим стиль отдельно к `list-manager` компоненту. откройте файл `list-manager.component.css` и вставьте следующий стили во внутрь:
 
 {% code-tabs %}
 {% code-tabs-item title="src/app/list-manager/list-manager.component.css" %}
@@ -206,7 +206,7 @@ Now let's add style specifically to the `list-manager` component. Open the file 
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-We'll wrap the content of this component with a `<div>` element with the `todo-app` class.
+Оборачиваем содержимое компонента в  `<div>` с `todo-app` классом.
 
 {% code-tabs %}
 {% code-tabs-item title="src/app/list-manager/list-manager.component.ts" %}
@@ -226,7 +226,7 @@ template: `
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-Finally, add the following style to `todo-item.component.css`:
+В завершении, добавьте следующие стили в  `todo-item.component.css`:
 
 {% code-tabs %}
 {% code-tabs-item title="src/app/todo-item/todo-item.component.css" %}
@@ -253,7 +253,7 @@ Finally, add the following style to `todo-item.component.css`:
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-Wrap the content of the `todo-item` component with a `div` element with the `todo-item` class:
+Оберните содержимое `todo-item` компонента в `div` с `todo-item` классом:
 
 ```markup
 <div class="todo-item">
@@ -261,9 +261,9 @@ Wrap the content of the `todo-item` component with a `div` element with the `tod
 </div>
 ```
 
-We'll use the `todo-checkbox` and `todo-title` classes later on.
+Мы будем использовать `todo-checkbox` и `todo-title` классы позже.
 
-You can change the style as you wish - the size of elements, the colors - however you'd like!
+Можете изменить стили на Ваше усмотрение - размер элементов, цвета - как пожелаете!
 
-Note: You can use SCSS files in the project, which is a nicer way to write style. It has great features that help the developer. SCSS files are compiled to CSS when the project is built.
+Примечание: Можете использовать SCSS файлы в проете, это отличный способ написания стилей. Это хорошая возможность сделать разработку проще. SCSS файлы компилируются с CSS после того как проект собран.
 
