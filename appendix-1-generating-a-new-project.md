@@ -1,28 +1,27 @@
-# Appendix 1: Generating a new project
+# Приложение 1: Создание нового проекта
 
-In every project there are different ways to start, most of them concern scaffolding tools like Yeoman or Slush. These tools generate a starter project, help you generate needed files, and take care of building and running the project.  
-Other ways to start are using starter kits, are also called seed projects, which contain all you need to start the project.  
-Unlike scaffolding tools, starter kits are relevant only for the initial project. After installation you probably won't use that kit again \(if it's a good starter kit maybe you'll go back to read the documentation\).
+В каждом проекте есть разные способы запуска, большинство из них относятся к скаффолдинговым инструментам, таким как Yeoman или Slush. Эти инструменты генерируют стартовый проект, помогают вам создать необходимые файлы, и следят за созданием и работой проекта.  
+Другой способ запуска - использовать стартовые наборы, также называются зерновыми проектами, которые содержат все необходимое для запуска проекта.  
+В отличие от скаффолдинговых инструментов, стартовые наборы подходят только для первоначального проекта. После установки вы, вероятно, больше не будете использовать этот набор \(если это хороший стартовый набор, возможно, вы вернетесь, чтобы прочитать документацию\).
 
-Regarding Angular, the most easy way to start with is the Angular CLI which is a scaffolding tool. we will cover its use in this tutorial.
+Что касается Angular, самый простой способ начать с  Angular CLI который является скаффолдинговым инструментом. Мы рассмотрим его в этом уроке.
 
-In this chapter we show all the files and folders that are created by the Angular CLI when you create a new project. We'll start with one important action: changing the application prefix.
+В этой главе мы покажем все файлы и папки, созданные спомощью Angular CLI при создании нового проекта. Начнем с одного важного действия: изменение префикса приложения.
 
-## Application prefix
+## Префикс приложения
 
-The prefix is used to differentiate the components that you create in your application from components you use from other sources, and from HTML components. You can give your initials as the prefix if it's a personal project. If you're collaborating or working for a client, you can have the initials of the project name as the prefix. In this tutorial, the prefix will simply be `todo`.
+Префикс используется для дифференциации компонентов, созданных вами в приложении, из компонентов, которые вы используете из других источников, а также HTML компонентов. Вы можете указать свои инициалы в качестве префикса, если это персональный проект. Если вы сотрудничаете с кем-то еще или работаете на клиента, вы можете выбрать имя проекта в качестве префикса. В этом уроке, префикс будет простым `todo`.
 
-The Angular CLI generated a configuration file for its own use: `angular-cli.json`. Open this file, find the `prefix` property and change its value from `app` to `todo`. From now on, each component and directive you will create using Angular-CLI will have this prefix in its selector.
+Angular CLI создал файл конфигурации для собственного использования: `angular-cli.json`. Откройте этот файл, найдите свойство `prefix`  и измените его значение с `app` на `todo`. После этого, каждый компонент и директива, которые вы создадите, используя Angular-CLI будет иметь этот префикс в своем селекторе.
 
-We could have defined the prefix when we created the project, by adding `--prefix <prefix>`. Then even the root component that is generated would have this prefix. But we're fine with its current selector, `app-root`, and we will not change it at this moment.
+Мы могли  определить префикс, когда создавали проект, добавив `--prefix <prefix>`. Тогда даже корневой компонент, который сгенерирован, будет иметь этот префикс. Но нам подходит текущий селектор, `app-root`, и мы не будем его менять сейчас.
 
-## Application structure
+## Структура приложения
 
-the first thing to start with when you work with the cli is scaffold the initial project.  
-to do so you can simply create a folder and write `ng init`  
-from that point the Angular CLI will download all the dependencies and install them. other way to scaffold the initial project is writing `ng new <project-name>` and the Angular CLI will create the folder for you and `ng init` in that folder.
+Первое, с чего нужно начать, когда вы работаете с CLI, - это со скаффолда первоначального проекта.Для этого вы можете просто создать папку и написать `ng init`. С этой точки Angular CLI загрузит все зависимости и установит их.
+Другой вариант первоначального запуска проекта `ng new <project-name>` и Angular CLI создаст папку для вас и `ng init` в этой папке.
 
-after we created the project we will get file in this format
+После создания проекта мы получим файл в этом формате
 
 ```text
 ├── angular-cli.json // Angular CLI configuration
@@ -54,13 +53,13 @@ after we created the project we will get file in this format
 └── tslint.json // linting configuration
 ```
 
-lets skip all the configurations files for now and jump right to the folder structure.  
-the app is the main component of the application from that point we start our app.  
-we will cover components in more depth in later tutorial but the main idea of the project is that we create a components and connect them to each other until we have an application.
+Давайте пропустим все файлы конфигураций и перейдем прямо к структуре папок.  
+Аpp является основным компонентом приложения с того момента, как мы  запускаем приложение.  
+Мы рассмотрим компоненты более подробно в следующих уроках,но основная идея проекта is that заключается в том, что мы создаем компоненты и соединяем их друг с другом, пока у нас не будет приложения.
 
-with the Angular CLI we can generate components and some other files which can help us in the future. to do so we should write `ng generate component <component name>` for components and `ng generate route <route path>` for routes and many more which can be review in [angular cli docs](https://github.com/angular/angular-cli#generating-components-directives-pipes-and-services)
+С Angular CLI можно генерировать компоненты и некоторые другие файлы, которые могут помочь нам в будущем. Для этого мы должны написать `ng generate component <component name>` для компонентов и `ng generate route <route path>` для путей и много другого, что более подробно рассмотрено [angular cli docs](https://github.com/angular/angular-cli#generating-components-directives-pipes-and-services)
 
-now you probably ask how do you see and review your application?  
-your command for that would be `ng serve` and you'll be able to access you app in `http://localhost:4200`  
-and last but not least if you want to build your application for production you should write `ng build` and there you have it, easy way to scaffold you Angular application
+Теперь вам вероятно интересно, как увидеть и проверить приложение?  
+Команда  `ng serve` и вы сможете получить доступ к своему приложению в `http://localhost:4200`  
+И последнее, но не менее важное, если вы создаете приложение для продакшена нужно написать `ng build` и у вас оно появится, простой способ для запуска Angular приложения.
 
