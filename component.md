@@ -1,20 +1,20 @@
-# Component
+# Компонент
 
-One approach in Web development \(and software development generally\) is component-based architecture. In the past years it has gained a lot of popularity. What is a component?
+Один из подходов в веб-разработке \(и разработка программного обеспечения в целом\) это компонентная архитектура. В последние годы он приобрел большую популярность. Что такое компонент?
 
-In [Service-Oriented Architecture \(SOA\) vs. Component Based Architecture](http://petritsch.co.at/download/SOA_vs_component_based.pdf), Helmut Petritsch defines a component as follows:
+В [Service-Oriented Architecture \(SOA\) vs. Component Based Architecture](http://petritsch.co.at/download/SOA_vs_component_based.pdf), Хельмут Петрич определяет компонент следующим образом:
 
-> A component is a software object, meant to interact with other components, encapsulating certain functionality or a set of functionalities. A component has a clearly defined interface and conforms to a prescribed behaviour common to all components within an architecture.
+> Компонент является программным объектом, предназначеный для взаимодействия с другими компонентами, инкапсулирования определенной функциональности или набора функций. Компонент имеет четко определенный интерфейс и соответствует предписанному поведению, характерному для всех компонентов в архитектуре.
 
-In Web applications, **a component controls a patch of screen called a view**. It's a part of what you will eventually see on the screen. It has a template, which defines its visual structure. It also has logic which defines the behavior and the dynamic values. The logic part is JavaScript code and is called the controller.
+В веб-приложениях, **компонент управляет участком экрана, называемым представлением**. Это часть того, что вы в конечном итоге увидите на экране. У него есть шаблон, который определяет его визуальную структуру. Он также имеет логику, которая определяет поведение и динамические значения. Логической частью является код JavaScript и называется контроллером.
 
-Here's a diagram of a component in Angular, with the result below.
+Вот диаграмма компонента в Angular, с приведенным ниже результатом.
 
-Directives, pipes and services are other building blocks in Angular, which can be used in a component \(in the diagram we see only the usage of a pipe\). We will discuss them later in the tutorial.
+Директивы, pipes и сервисы - это другие строительные блоки в Angular, который может быть использован в компоненте \ (на диаграмме мы видим только использование pipe\). Мы обсудим их позже.
 
-Let's take a look at the component that was created by the Angular CLI. All the relevant files exist in the folder `src/app`. Open the file `app.component.ts`.
+Давайте посмотрим на компонент, который был создан спомощью Angular CLI. Все необходимые файлы находятся в папке `src/app`. Открыть файл `app.component.ts`.
 
-Just like ngModules that we saw in the previous chapter, a component is also defined by a class with a decorator. This is the class definition:
+Как ngModulesкоторые мы видели в предыдущей главе, компонент также определяется классом с декоратором. Это определение класса:
 
 {% code-tabs %}
 {% code-tabs-item title="src/app/app.component.ts" %}
@@ -26,9 +26,9 @@ export class AppComponent {
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-It has one member called "title". It is a property to which you can assign a value. The value assigned to it here is the string "app".
+В нем есть один член, подназванием "title". Это свойство, которому вы можете присвоить значение. Значением, назначенным ему здесь, является строкой "app".
 
-Angular takes care of synchronizing the members of the component with the component template. So we can easily use the member `title` in the template. Take a look at the template attached to the component in the file `app.component.html`. Near the top, you'll see code like this:
+Angular выполняет синхронизацию элементов компонента с шаблоном компонента. Поэтому мы можем легко использовать элемент `title` в шаблоне. Взгляните на шаблон, прикрепленный к компоненту в файле `app.component.html`. В верхней части вы увидите следующий код:
 
 {% code-tabs %}
 {% code-tabs-item title="src/app/app.component.html" %}
@@ -40,21 +40,21 @@ Angular takes care of synchronizing the members of the component with the compon
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-The double curly braces and their content are called **Interpolation**. This is one form of **data binding** in Angular. As we mentioned before, the code in this file is not used as-is when the browser renders the component. Angular compiles it to JavaScript code. In one of the compilation steps, it looks for Interpolations inside the template. The content of the Interpolation is an "Angular template expression" \(which is a lot like JavaScript\). The expression is evaluated at runtime, and then you see the result.
+Двойные фигурные скобки и их содержимое называются **Интерполяция**. Это одна из форм **привязки данных** в Angular. Как мы уже упоминали, код в этом файле не используется, когда браузер отображает компонент. Angular компилирует его в код JavaScript. На одном из этапов компиляции он ищет интерполяции внутри шаблона. Содержание Интерполяции является "Angular выражением шаблона" \(который очень похож на JavaScript\). Выражение оценивается во время выполнения, а затем вы видите результат.
 
-Interpolation is one of the strongest, most basic features in Angular. It has existed from the very beginning of Angular - in the first version \(AngularJS\). It makes it really simple to insert dynamic data into the view.
+Интерполяция - одна из самых важных, наиболее основных функций в Angular. Она существовал с самого начала Angular - в первой версии \(AngularJS\). Она дает возможность просто вставить динамические данные в представление.
 
-In this component, the expression is simply the member of the component class, `title`. **Let's try to change it.** Try out the following and see the result in the browser. \(With every change you make in the file, the browser will refresh automatically!\)
+В этом компоненте, выражение является членом класса компонентов, `title`. **Попробуем изменить его.** Попробуйте следующее и посмотрите результат в браузере. \(С каждым изменением, которое вы делаете в файле, браузер автоматически обновится!\)
 
-* Remove the curly braces and keep just the content `title`.
-* Put the curly braces back and replace the content with some mathematical expression, for example: `{{ 2 + 2 }}`. \(The spaces are not mandatory, they just make the code more readable.\)
-* Write a mathematical expression combined with the `title` member: `{{ title + 10 }}`
-* Pass an undefined variable to the expression - a variable which was not declared in the component class. For example: `{{ x }}`
-* Try out anything you'd like. Don't worry - you can't do any harm to the browser or the computer! In the worst case, the browser will run out of memory and will get stuck. \(But you'll have to write something really complicated to make that happen!\)
+* Удалите фигурные скобки и сохраните только содержимое `title`.
+* Верните фигурные скобки назад и замените содержимое некоторым математическим выражением, например: `{{ 2 + 2 }}`. \(Пробелы не являются обязательными, они просто делают код более читаемым.\)
+* Напишите математическое выражение в сочетании с членом `title`: `{{ title + 10 }}`
+* Передайте неопределенную переменную в выражение - переменную, которая не была объявлена в классе компонента. Например: `{{ x }}`
+* Попробуйте все, что захотите. Не беспокойтесь - вы не сможете навредить браузеру или компьютеру! В худшем случае у браузера не хватит памяти и он зависнет. \(Но вам нужно написать что-то действительно сложное, чтобы это произошло!\)
 
-This is one way that you can bind members of the component's controller to its template. How does Angular know that this is the template of the App component?
+Это один из способов, которым вы можете привязать элементы контроллера компонента к его шаблону. Как Angular знает, что это шаблон компонента приложения?
 
-Let's go back to the file `app.component.ts` and look at the component's metadata defined in the decorator `@Component` right above the class definition:
+Вернемся к файлу  `app.component.ts` и посмотрим на метаданные компонента в декораторе `@Component`, прямо над определением класса:
 
 {% code-tabs %}
 {% code-tabs-item title="src/app/app.component.ts" %}
@@ -68,9 +68,9 @@ Let's go back to the file `app.component.ts` and look at the component's metadat
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-We pass an object of definitions to the decorator, just like we saw in the previous chapter with ngModule. The second property, `templateUrl`, tells Angular where to look for the template attached to the component. There is another option to point to the template, which we'll discuss later: to write the whole template inline here, in the component definition.
+Мы передаем объект определения декоратору, как мы видели в предыдущей главе с ngModule. Второе свойство, `templateUrl`, сообщает Angular, где искать шаблон, прикрепленный к компоненту. Есть еще один вариант указать на шаблон, который мы обсудим позже: написать весь шаблон inline здесь, в определении компонента.
 
-The third property, `styleUrls`, tells Angular where to look for the CSS files that define the style of this component. It can have multiple CSS files. That's why the value of `styleUrls` is an array. You can take a look at the CSS file `app.component.css` - you'll see that it's empty. You can add some CSS style here, for example:
+Третье свойство, `styleUrls`, сообщает Angular, где искать файлы CSS, которые определяют стиль этого компонента. Он может иметь несколько файлов CSS. Вот почему значение `styleUrls` является массивом. Если вы посмотрите файл CSS `app.component.css` - вы увидите, что он пуст. Здесь вы можете добавить стиль CSS, например:
 
 {% code-tabs %}
 {% code-tabs-item title="src/app/app.component.css" %}
@@ -82,11 +82,11 @@ h1 {
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-We'll add more style later on.
+Мы добавим больше стилей позже
 
-**Note:** the Angular CLI supports css-extension languages out-of-the-box: sass, less, and stylus.
+**Примечание:**  Angular CLI поддерживает языки css: sass, less, and stylus.
 
-The first property, `selector`, tells Angular what will be the name of the tag that we'll use to call the component. As we saw in the file `src/index.html`, we use the app component inside the body:
+Первое свойство, `selector`, сообщает Angular, что будет именем тега, который мы будем использовать для вызова компонента. Как мы видели в файле `src / index.html`, мы используем компонент приложения внутри тела:
 
 {% code-tabs %}
 {% code-tabs-item title="src/index.html" %}
@@ -98,13 +98,13 @@ The first property, `selector`, tells Angular what will be the name of the tag t
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-The element `app-root` is not an HTML element. It is the component that was created with the selector `app-root`. Try changing the selector. You'll see that if you change it in only one of the files, nothing will be displayed, since the element is no longer replaced with an Angular component. You can see an error message in the browser's console.
+Элемент `app-root` не является элементом HTML. Это компонент, который был создан с помощью селектора `app-root`. Попробуйте изменить селектор. Вы увидите, что если вы измените его только в одном из файлов, ничего не будет отображаться, так как элемент больше не заменяется в компоненте Angular. Вы можете увидеть сообщение об ошибке в консоли браузера.
 
-One last thing: the first line in the component file imports the code that defines the decorator `@Component`. It is needed to use the decorator, which is defined in the imported file \(or actually, in one of its own imports\). Try removing this line, and see the error.
+И последнее: первая строка в файле компонента импортирует код, определяющий декоратор `@Component`. Необходимо использовать декоратор, который определен в импортированном файле \ (или фактически, в одном из собственных импортов\). Попробуйте удалить эту строку и увидеть ошибку.
 
-## Inline Template
+## Встроенный шаблон
 
-Let's move the template to be **inline** in the component definition. This will help us manage the template while looking at its functionality. In the file `app.component.ts` replace the line
+Давайте переместим шаблон в **inline** в определение компонента. Это поможет нам управлять шаблоном, наблюдая за его функциональностью. В файле `app.component.ts` замените строку
 
 {% code-tabs %}
 {% code-tabs-item title="src/app/app.component.ts" %}
@@ -124,11 +124,11 @@ template: ``,
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-Notice the **backticks** - **\` **- they are used to define Template Literals, which are new in JavaScript \(ES6\). This way you can define multi-line strings. They have another cool ability: to easily use JavaScript variables and expressions within the string \(with no relation to Angular binding expressions in the template\). Read about it in the [MDN documentation](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Template_literals).
+Обратите внимание на **обратные кавычки** - **\` **- они используются для определения литералов шаблонов, которые являются новыми в JavaScript \(ES6\). Таким образом вы можете определить многострочные строки. У них есть еще одна крутая способность: легко использовать переменные JavaScript и выражения внутри строки \(без отношения Angular к выражению привязки в шаблоне \). Читайте об этом в [MDN documentation](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Template_literals).
 
-Make sure you replace `templateUrl` with `template`, and don't forget the comma at the end of the line.
+Убедитесь, что вы заменили `templateUrl` с `template`, и не забудьте запятую в конце строки.
 
-Now instead of taking the content from the original template, we'll insert a more simple template which we can work with. When the cursor is between the backticks, press Enter and insert the HTML template:
+Теперь вместо того, чтобы брать содержимое из исходного шаблона, мы добавим более простой шаблон, с которым будем работать. Когда курсор находится между обратными кавычками, нажмите Enter и вставьте шаблон HTML:
 
 {% code-tabs %}
 {% code-tabs-item title="src/app/app.component.ts" %}
@@ -142,25 +142,25 @@ template: `
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-It is easier to manage the template when you see its controller at the same time. This is true as long as the template doesn't get too big and the controller doesn't get too complicated. If they do, it's a sign you should refactor your code by breaking it down to child components.
+Легче управлять шаблоном, когда вы видите одновременно его контроллер. Это удобно, если шаблон не становится слишком большим, и контроллер не становится слишком сложным. Если так, это знак того, что вы должны реорганизовать свой код, разбив его на дочерние компоненты.
 
-At this point you can delete the file `app.component.html`.
+На этом этапе вы можете удалить файл `app.component.html`.
 
-**We recommend continuing this tutorial using inline templates in the components.** Especially if you're working on a laptop with a small screen, where there isn't enough space to open two files side-by-side.
+**Мы рекомендуем продолжить это учебное пособие, используя встроенные шаблоны в компонентах.** Особенно, если вы работаете на ноутбуке с маленьким экраном, где недостаточно места для открытия двух файлов бок о бок.
 
-Let's configure the Angular CLI to give us inline-template as a default. In the terminal run the command: `ng set defaults.component.inlineTemplate true`. Now every component that you'll generate will have an inline template, and an HTML file will not be created.
+Давайте сконфигурируем Angular CLI, чтобы предоставить нам встроенный шаблон по умолчанию. В терминале выполните команду: `ng set defaults.component.inlineTemplate true`. Теперь каждый компонент, который вы создадите, будет иметь встроенный шаблон, и HTML-файл не будет создан.
 
-If you wish to continue this tutorial with templates in separate HTML files, do not run this command, and use the generated `.html` files for the templates.
+Если вы хотите продолжить это руководство с помощью шаблонов в отдельных файлах HTML, не запускайте эту команду и используйте сгенерированные файлы `.html` для шаблонов.
 
-> **Note: **You can specify that you'd like to use inline-template throughout the project in several ways:
+> **Примечание: ** Вы можете указать, что вы хотите использовать встроенный шаблон во всем проекте несколькими способами:
 >
-> * When generating a project, pass the flag `-it` or `--inline-template` like this: `ng new todo-list -it`
-> * After generating a project, add it to the configuration so that components generated from this point on will have an inline template: `ng set defaults.component.inlineTemplate true`. \(From version 6 you'll need to use the command `ng config projects.YOURPROJECTNAME.schematics.@schematics/angular:component.inlineTemplate true` instead\) This adds the line `inlineTemplate: true` in the Angular CLI configuration file `.angular-cli.json` \(`angular.json` in version 6\). You can also edit the file directly.
-> * If you haven't configured to have inline templates as a default, you can specify this per component when you generate it, by passing the flag `-it` or `--inline-template`. For example: `ng generate header -it`.
+> * При создании проекта передайте флаг `-it` или` -inline-template` следующим образом: `ng new todo-list -it`
+> * После создания проекта добавьте его в конфигурацию, чтобы компоненты, сгенерированные с этого момента, имели встроенный шаблон: `ng set defaults.component.inlineTemplate true`. \(С версии 6 вам нужно будет использовать команду `ng config projects.YOURPROJECTNAME.schematics.@schematics/angular:component.inlineTemplate true`\) Это добавит строку `inlineTemplate: true` в конфигурационный файл Angular CLI `.angular-cli.json` \(`angular.json` в версии 6\). Вы также можете редактировать файл напрямую.
+> * Если вы не настроили встроенные шаблоны по умолчанию, вы можете сделать это для каждого компонента при его создании, передав флаг `-it` или `--inline-template`. Например: `ng generate header -it`.
 
-The same way we use inline template, we can use also inline styles. But for now we will keep the styles in a separate file.
+Точно так же, используя встроенный шаблон, мы можем вставлять встроенные стили. Но пока мы сохраним стили в отдельном файле.
 
-## Summary
+## Резюме
 
-We have explored the root component that was generated for us by the Angular CLI, and even refactored it. In the next chapter, we will create a new component. We will start building the tree of components, which defines the structure of the application.
+Мы изучили корневой компонент, который был сгенерирован спомощью Angular CLI, и даже реорганизовали его. В следующей главе мы создадим новый компонент. Мы начнем строить дерево компонентов, которое определяет структуру приложения.
 
