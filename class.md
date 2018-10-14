@@ -1,12 +1,12 @@
-# Class
+# Класс
 
-A class is a special programmatic structure. It is defined with **members** which can be **properties** \(variables\) and **methods** \(functions\). Then instances of the class are created, usually by calling the `new` operator on the class: `let myInstance = new myClass();`. The instance created is an object on which you can call the class methods and get and set the values of its properties. Multiple instances can be created from one class.
+Класс представляет собой специальную программную структуру. Он определяется с помощью **участников** которые могут быть **свойствами** \(переменными\) и **методами** \(функциями\). Затем создаются экземпляры класса, обычно с названием `new` оператор класса: `let myInstance = new myClass();`. Созданный экземпляр - это объект, с помощью которого вы можете вызвать методы класса и получить, и установить значения его свойств. Несколько экземпляров могут быть созданы из одного класса.
 
-## In Angular...
+## В Angular...
 
-Angular takes care of creating instances of the classes you define - if they are recognized as Angular building blocks. The decorators make that connection with Angular.
+Angular заботится о создании экземпляров классов, которые вы определяете - если они признаны как строительные блоки Angular. Декораторы делают это соединение с Angular.
 
-Each time you use a component in a template, a new instance of it is created. For example, here three instances of the InputButtonUnitComponent class will be created:
+Каждый раз, когда вы используете компонент в шаблоне, создается новый экземпляр. Например, здесь будут созданы три экземпляра класса InputButtonUnitComponent:
 
 {% code-tabs %}
 {% code-tabs-item title="src/app/app.component.ts" %}
@@ -22,11 +22,11 @@ template: `
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-Let's take a look at the class `InputButtonUnitComponent`.
+Давайте посмотрим на класс `InputButtonUnitComponent`.
 
-## implements OnInit
+## выполнение OnInit
 
-First, you see something was added to the class declaration:
+Во-первых, вы видите, что что-то было добавлено в объявление класса:
 
 {% code-tabs %}
 {% code-tabs-item title="src/app/input-button-unit/input-button-unit.component.ts" %}
@@ -38,9 +38,9 @@ export class InputButtonUnitComponent implements OnInit {
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-`OnInit` is an **interface** - a structure defined but not implemented as a class. It defines which properties and/or methods should exist on the class that implements it. In this case, `OnInit` is an interface for Angular Components which implement the method `ngOnInit`. This method is a **component life-cycle method**. Angular will call this method after the component instance has been created.
+`OnInit` является ** интерфейсом ** - структура, определенная, но не реализованная как класс. Она определяет, какие свойства и / или методы должны существовать в классе, который его реализует В этом случае, `OnInit` является интерфейсом компонентов Angular которые реализуют метод `ngOnInit`. Этот метод является **метод жизненного цикла компонентов**. Angular вызовет этот метод после создания экземпляра компонента.
 
-The Angular CLI adds this statement to remind us that it's best to initialize things on the component through the `ngOnInit` method. You can see it also added the method in the body of the class:
+Angular CLI добавляет это утверждение, чтобы напомнить нам, что лучше всего инициализировать элементы компонента через  `ngOnInit` метод. Вы также можете увидеть, что он добавил метод в тело класса:
 
 {% code-tabs %}
 {% code-tabs-item title="src/app/input-button-unit/input-button-unit.component.ts" %}
@@ -51,31 +51,30 @@ ngOnInit() {
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-You can use this method without explicitly indicating that the class implements the `OnInit` interface, but it's useful to use the implementation statement. To see why, delete the `ngOnInit` method. The IDE will tell you there's an error - you must implement `ngOnInit`. How does it know that? Because of `implements OnInit`.
+Вы можете использовать этот метод без явного указания того, что класс реализует `OnInit` интерфейс, но полезно использовать утверждение. Чтобы узнать почему, удалите метод `ngOnInit`. IDE сообщит вам, что есть ошибка - вы должны имплементоровать `ngOnInit`.Откуда это известно? Потому что `implements OnInit`.
 
-## constructor
+## конструктор
 
-Another method we didn't see in the `app-root` component is the constructor. It is a method that is called by JavaScript when an instance of the class is created. Whatever is inside this method is used to create the instance. So it is called before `ngOnInit`.
+Другой метод, который мы не видели в `app-root` компоненте является конструктор.Это метод, который вызывается JavaScript при создании экземпляра класса. Все, что находится внутри этого метода, используется для создания экземпляра. Поэтому он вызывается до `ngOnInit`.
 
-> A strong feature in Angular that uses the constructor is dependency injection. We'll get to that later on, when we start using services.
+> Сильной особенностью Angular, который использует конструктор, является внедрение зависимостей. Мы расмотрим это позже, когда начнем использовать сервисы.
 
-## Properties
+## Свойства
 
-The property `title` we added is used to store a value, in our case of type string. Each instance of the class will have its own `title` property, meaning you can change the value of `title` in one instance, but it will remain the same in the other instances.
+Свойство `title`, которое мы добавили, используется для хранения значения, в нашем случае тип строка. Каждый экземпляр класса будет иметь собственное свойство `title`, что означает, что вы можете изменить значение `title` в одном экземпляре, но в остальных случаях оно останется прежним.
 
-In TypeScript, we must declare members of the class either in the class body outside any method, or pass them to the constructor - as we will see when we use services.
-
-You can declare a property without initializing it:
+В TypeScript,мы должны объявлять членов класса либо в классе вне любого метода, или передать их конструктору - как мы увидим, когда будем использовать сервис.
+Вы можете объявить свойство без его инициализации:
 
 ```typescript
 title: string;
 ```
 
-Then you can assign a value at a later stage, for example in the constructor or in the ngOnInit method. Here we explicitly noted that `title` is of the type `string`. \(The type is inferred by TypeScript when we immediately assign a value, so there's no need to add the type in this case.\)
+Затем вы можете присвоить значение на более позднем этапе, например, в конструкторе или в методе ngOnInit. Здесь мы явно отметили, что `title` имеет тип` string`. \ (Тип выводится с помощью TypeScript, когда мы сразу присваиваем значение, поэтому нет необходимости добавлять этот тип в этом случае. \)
 
-When referencing a member of the class from within a class method you must prefix it with `this`. It's a special property that points at the current instance.
+Когда вы ссылаетесь на член класса из метода класса, вы должны добавлять префикс `this`. Это специальное свойство, указывающее на текущий экземпляр.
 
-Try setting a different value for `title` from inside the constructor. See the result in the browser:
+Попробуйте установить другое значение для `title` изнутри конструктора. Посмотрите результат в браузере:
 
 {% code-tabs %}
 {% code-tabs-item title="src/app/input-button-unit/input-button-unit.component.ts" %}
@@ -89,7 +88,7 @@ constructor() {
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-Try changing the value of `title` inside the method `ngOnInit`. Which value will be displayed on the screen?
+Попробуйте изменить значение `title` внутри метода` ngOnInit`. Какое значение будет отображаться на экране?
 
 {% code-tabs %}
 {% code-tabs-item title="src/app/input-button-unit/input-button-unit.component.ts" %}
@@ -107,9 +106,9 @@ ngOnInit() {
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-### Methods
+### Методы
 
-Let's add a method that changes the value of `title` according to the argument we will pass. We'll call it `changeTitle`. The method will have one parameter of type `string`. Add it **inside the class body** \(but not inside another method\):
+Давайте добавим метод, который изменяет значение `title` в соответствии с аргументом, который мы добавим. Назовем его `changeTitle`. Метод будет иметь один параметр типа `string`. Добавьте его внутри тела класса ** \ (но не внутри другого метода \):
 
 {% code-tabs %}
 {% code-tabs-item title="src/app/input-button-unit/input-button-unit.component.ts" %}
@@ -121,7 +120,7 @@ changeTitle(newTitle: string) {
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-**Note:** Functions and Methods can return a value that can be used when the method is called. For example:
+** Примечание: ** Функции и методы могут возвращать значение, которое может использоваться при вызове метода. Например:
 
 {% code-tabs %}
 {% code-tabs-item title="code for example" %}
@@ -136,7 +135,7 @@ console.log(z);
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-The method `changeTitle` is not used anywhere yet. We can call it from another method or from the template \(which we will see in the following chapters\). Let's call it from the constructor.
+Метод `changeTitle` пока что нигде не используется. Мы можем вызвать его другим способом или в шаблоне \(которые мы рассмотрим в следующих главах\). Вызовем его в конструкторе.
 
 {% code-tabs %}
 {% code-tabs-item title="src/app/input-button-unit/input-button-unit.component.ts" %}
@@ -148,11 +147,11 @@ constructor() {
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-![lab-icon](.gitbook/assets/lab%20%281%29.jpg) **Playground**: You can try calling the method with different arguments \(the string passed inside the brackets\) from `ngOnInit`. Try calling it before or after assigning a value directly to title. Try calling it a few times from the same method. See the result in the browser.
+![lab-icon](.gitbook/assets/lab%20%281%29.jpg) **Playground**: Вы можете попробовать вызвать метод с разными аргументами \ (строка, переданная внутри скобок \) из `ngOnInit`. Попробуйте вызвать его до или после присвоения значения непосредственно заголовку. Попробуйте вызвать его несколько раз из того же метода. Посмотрите результат в браузере.
 
-## Debugging Tip
+## Совет для дебага
 
-You can always use `console.log(someValue)` inside class methods. Then the value you passed as an argument will be printed in the browser's console. This way you can see the order of the execution of the methods and the value of the argument you pass \(if it's a variable\). For example:
+Вы всегда можете использовать `console.log(someValue)` внутри методов класса. Затем значение, которое вы передали в качестве аргумента, будет отображено в консоли браузера. Таким образом вы можете видеть порядок выполнения методов и значение аргумента, который вы передаете \ (если это переменная \). Например:
 
 {% code-tabs %}
 {% code-tabs-item title="src/app/input-button-unit/input-button-unit.component.ts" %}
@@ -171,5 +170,5 @@ changeTitle(newTitle: string) {
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-The browser's console is a part of its Dev Tools. You can see how to open the console in different browsers here: [https://webmasters.stackexchange.com/questions/8525/how-do-i-open-the-javascript-console-in-different-browsers](https://webmasters.stackexchange.com/questions/8525/how-do-i-open-the-javascript-console-in-different-browsers)
+Консоль браузера входит в состав инструментов Dev Tools. Вы можете увидеть, как открыть консоль в разных браузерах здесь:[https://webmasters.stackexchange.com/questions/8525/how-do-i-open-the-javascript-console-in-different-browsers](https://webmasters.stackexchange.com/questions/8525/how-do-i-open-the-javascript-console-in-different-browsers)
 
