@@ -1,14 +1,14 @@
-# Creating a Service
+# Создание Сервиса
 
-In Angular, a service is \(typically\) a JavaScript class that's responsible for performing a specific task needed by your application. In our todo-list application, we'll create a service that will be responsible for saving and managing all the tasks, and we'll use it by injecting it into the components.
+В Angular, сервис \ (обычно \) это класс JavaScript, который отвечает за выполнение конкретной задачи, требуемой вашим приложением.В нашем todo-list приложении, мы создадим сервис, который будет отвечать за сохранение и управление всеми задачами, и будем использовать его внутри компонентов.
 
-## Create a service with the Angular CLI:
+## Создадим сервис спомощью Angular CLI:
 
 ```text
 ng g s services/todo-list
 ```
 
-This command will generate the service in the file `src/app/services/todo-list.service.ts`. The service is a simple Class called `TodoListService`. It has the decorator `@Injectable` which allows it to use Dependency Injection.
+Эта команда будет генерировать сервис в файле `src/app/services/todo-list.service.ts`. Сервис - это простой класс, называемый `TodoListService` у которого есть декоратор `@Injectable`, что позволяет использовать внедрение зависимостей.
 
 {% code-tabs %}
 {% code-tabs-item title="src/app/services/todo-list.service.ts" %}
@@ -25,11 +25,11 @@ export class TodoListService {
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-## Provide the service
+## Предоставление сервиса
 
-In version 6 of the Angular CLI you don't need to provide the service by yourself - the CLI adds it to the root `NgModule`. But you can keep on reading to understand what happens and what it means.
+В версии 6 Angular CLI вам не нужно предоставлять сервис самостоятельно - CLI добавляет его в корневой каталог `NgModule`. Но вы можете продолжить читать, чтобы понять, что происходит и что это значит.
 
-To start using the service, we first need to _provide_ it in an `NgModule`. We have only one `NgModule` in our app - the `AppModule` located in `/src/app/app.module.ts`. It's an empty class preceded by the `@NgModule` decorator to which we pass a configuration object. One of the properties of this object is a `providers` list which is currently empty. We'll add our new service to the list. 
+Чтобы начать пользоваться сервисом, нужно предоставить его в `NgModule`. У нас всего один `NgModule` в нашем приложении - `AppModule` расположенном в  `/src/app/app.module.ts`. Это пустой класс, которому предшествует `@NgModule` декоратор, которому мы передаем объект конфигурации. Одним из свойств этого объекта является `providers` список, который в настоящее время пуст. Добавим наш новый сервис в список.
 
 {% code-tabs %}
 {% code-tabs-item title="src/app/app.module.ts" %}
@@ -52,9 +52,9 @@ export class AppModule { }
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-The `providers` array tells Angular how to provide a service we're looking for \(usually in a component or another service\). This time the recipe is simple: When we ask for the `TodoListComponent` class we expect to get an instance of this class. Angular will create only one instance that we can access from anywhere in our application \(a Singleton\), so we can use it to share data between different parts of the application.
+Массив `providers` сообщает Angular, как предоставить сервис, который мы ищем \ (обычно в компоненте или другом сервисе \) На этот раз рецепт прост: Когда мы запрашиваем класс «TodoListComponent», мы ожидаем получить экземпляр этого класса. Angular будет создавать только один экземпляр, к которому мы можем получить доступ из любого места в нашем приложении \ (a Singleton \), поэтому мы можем использовать его для обмена данными между различными частями приложения.
 
-Make sure that the service is imported:
+Убедитесь, что сервис импортирован:
 
 {% code-tabs %}
 {% code-tabs-item title="src/app/app.module.ts" %}
@@ -64,9 +64,9 @@ import { TodoListService } from './services/todo-list.service';
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-## Share data
+## Совместное использование данных
 
-Now we can move the `todoList` array from `ListManagerComponent` to our new service. Go to the generated service file, `src/app/services/todo-list.service.ts`, and add this code inside the `TodoListService` class just above the `constructor`:
+Теперь мы можем переместить массив `todoList` из` ListManagerComponent` в новый сервис. Перейдите к сгенерированному файлу сервиса, `src/app/services/todo-list.service.ts`, и добавьте этот код внутри класса `TodoListService`  чуть выше `constructor`:
 
 {% code-tabs %}
 {% code-tabs-item title="src/app/services/todo-list.service.ts" %}
@@ -82,7 +82,7 @@ private todoList: TodoItem[] = [  {title: 'install NodeJS'},
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-Make sure that the TodoItem interface is imported:
+Убедитесь, что интерфейс TodoItem импортирован:
 
 {% code-tabs %}
 {% code-tabs-item title="src/app/services/todo-list.service.ts" %}
@@ -92,9 +92,9 @@ import { TodoItem } from '../interfaces/todo-item';
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-## Create a method to return the list
+## Создание метода для возврата списка
 
-We'll add a `getTodoList` method that will return the `todoList` array. The service will look like this:
+Мы добавим метод getTodoList, который вернет массив todoList. Сервис будет выглядеть так:
 
 {% code-tabs %}
 {% code-tabs-item title="src/app/services/todo-list.service.ts" %}
@@ -124,9 +124,9 @@ export class TodoListService {
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-## Inject and use the service
+## Внедрить и использовать услугу
 
-After creating the service, we can inject it into our `list-manager` component. In Angular Dependency Injection is very simple. We pass it as a parameter in the constructor - the parameter's type is the class name of the service. Angular assigns the instance it created to the parameter name, and we can use it from within the constructor. Before implementing it ourselves, let's see how it works:
+После создания сервиса мы можем ввести его в наш компонент «list-manager». В Angular внедрять зависимости очень просто. Мы передаем его как параметр в конструкторе - тип параметра - это имя класса сервиса. Angular присваивает экземпляр, который он создал, для имени параметра, и мы можем использовать его из конструктора. Прежде чем приступить к  реализации, давайте посмотрим, как это работает:
 
 ```typescript
 constructor(todoListService: TodoListService) {
@@ -134,7 +134,7 @@ constructor(todoListService: TodoListService) {
 }
 ```
 
-Typescript helps us furthermore by giving a shortcut for assigning the parameter to a class member. By adding `private` or `public` before the parameter name it is automatically assigned to `this`. So instead of declaring and assigning the property by ourselves: 
+Typescript помогает нам -  путем указания ярлыка для определения параметра члена класса. Добавляя  `private` или `public` перед именем параметра он автоматически присваивает `this`. То есть вместо объявления и назначения свойства: 
 
 ```typescript
 export class ListManagerComponent implements OnInit {
@@ -146,7 +146,7 @@ export class ListManagerComponent implements OnInit {
 }
 ```
 
-...we can reduce a lot of code like this:
+...мы можем уменьшить количество кода следующим образом:
 
 ```typescript
 export class ListManagerComponent implements OnInit {
@@ -155,10 +155,10 @@ export class ListManagerComponent implements OnInit {
 }
 ```
 
-So let's go on and use the service in the `list-manager` component.
+Итак, давайте продолжим и используем сервис в компоненте `list-manager`.
 
-* Remove the hard-coded list from the component, keep only the `todoList` property declaration.
-* Inject the `TodoListService` using the constructor. 
+* Удалите список  из компонента, сохраните только объявление свойства todoList.
+* Внесите «TodoListService» с помощью конструктора. 
 
 ```typescript
 export class ListManagerComponent implements OnInit {
@@ -167,7 +167,7 @@ export class ListManagerComponent implements OnInit {
   constructor(private todoListService:TodoListService) { }
 ```
 
-* Make sure the `TodoListService` is imported.
+* Убедитесь, что «TodoListService» импортирован.
 
 {% code-tabs %}
 {% code-tabs-item title="src/app/list-manager/list-manager.component.ts" %}
@@ -177,7 +177,7 @@ import { TodoListService } from '../services/todo-list.service';
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-* Get the list from the service in the `ngOnInit` method.
+* Получите список из сервиса в методе `ngOnInit`.
 
 {% code-tabs %}
 {% code-tabs-item title="src/app/list-manager/list-manager.component.css" %}
@@ -189,5 +189,5 @@ ngOnInit() {
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-You don't need to change anything in the template since we're assigning the list to the same property we used before. Seems like nothing has changed, but you can check that the list comes from the service by changing it from there \(adding an item, changing a title, etc.\).
+Вам не нужно ничего менять в шаблоне, поскольку мы используем список  с тем же свойством, которое использовали ранее. Кажется, что ничего не изменилось, но вы можете убедиться, что список приходит из сервиса, изменив его \ (добавив элемент, изменив заголовок и т. д. \).
 
