@@ -1,6 +1,6 @@
 # Разворачиваем на GitHub Pages
 
-Это старая версия - мы должны проверить это :\)
+Это старая версия - мы должны проверить ее :\)
 
 Для того, чтобы развернуть наши изменения на GitHub pages мы будем использовать angular-cli-ghpages пакет [https://github.com/angular-buch/angular-cli-ghpages](https://github.com/angular-buch/angular-cli-ghpages)
 
@@ -9,13 +9,13 @@
 * Необходимо зафиксировать все изменения, внесенные в проект.
 * Необходимо установить angular-cli-ghpages
 
-## Создание GitHub пользователя
+## Регистрация на GitHub 
 
 Если Вы уже зарегистрированы на GitHub можете пропустить этот шаг. Создаем пользователя на  GitHub: [https://github.com/](https://github.com/) Заполните форму регистрации и убедитесь, что вы подтвердили свой адрес электронной почты.
 
-## Создайте свой репозиторий приложений
+## Создайте свой репозиторий для приложения
 
-После входа на GitHub. Нажмите кнопку  `Start a project` , и назовите репозиторий `ng-girls-todo` или любое другое имя, которое вам нравится.
+После входа на GitHub. Нажмите кнопку  `Start a project` , и назовите репозиторий `ng-girls-todo` или любое другое название, которое вам нравится.
 
 ## Подключение к репозиторию
 
@@ -51,7 +51,7 @@ angular-cli-ghpages
 
 ## Популярные ошибки
 
-На \ (windows \) вы, возможно, столкнулись с проблемой, например:
+На \(windows\) вы, возможно, столкнулись с проблемой, например:
 
 ```text
 An error occurred!
@@ -61,7 +61,7 @@ An error occurred!
     ...
 ```
 
-Попробуйте отладить его с помощью  `angular-cli-ghpages -S` . Если вы получите следующую ошибку:
+Попробуйте отладить  с помощью  `angular-cli-ghpages -S` . Если вы получите следующую ошибку:
 
 ```text
 fatal: could not read Username for \'https://github.com\': No error\n',
@@ -70,7 +70,7 @@ fatal: could not read Username for \'https://github.com\': No error\n',
 вы можете сделать следующее
 
 1. Создайте токен личного доступа здесь: [https://github.com/settings/tokens](https://github.com/settings/tokens)
-2. Выполните следующую команду и замените токен, организацию \ (ваш пользователь \), репозиторий, имя пользователя и адрес электронной почты:
+2. Выполните следующую команду и замените токен, организацию \(ваш пользователь\), репозиторий, имя пользователя и адрес электронной почты:
 
    ```text
    angular-cli-ghpages --repo=https://<personal-access-token>@github.com/organisation/your-repo.git --name="Displayed Username" --email=mail@example.org
