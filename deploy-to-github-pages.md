@@ -1,59 +1,57 @@
-# Deploy to GitHub Pages
+# Разворачиваем на GitHub Pages
 
-This is an old version - we should check this :\)
+Это старая версия - мы должны проверить это :\)
 
-To deploy our changes to GitHub pages we will use the angular-cli-ghpages package [https://github.com/angular-buch/angular-cli-ghpages](https://github.com/angular-buch/angular-cli-ghpages)
+Для того, чтобы развернуть наши изменения на GitHub pages мы будем использовать angular-cli-ghpages пакет [https://github.com/angular-buch/angular-cli-ghpages](https://github.com/angular-buch/angular-cli-ghpages)
 
-* You need to have a GitHub user
-* You need to create a repostiroy for your project.
-* You need to commit all the changes you made in the project
-* You need to install angular-cli-ghpages
+* Вы должны быть зарегистрированы на GitHub
+* Нужно создать репозиторий для вашего проекта.
+* Необходимо зафиксировать все изменения, внесенные в проект.
+* Необходимо установить angular-cli-ghpages
 
-## Creating a GitHub user
+## Создание GitHub пользователя
 
-If you already have a GitHub user you can skip this step. To Create a GitHub user go to GitHub: [https://github.com/](https://github.com/) Fill the regetration form and make sure to validate your email address.
+Если Вы уже зарегистрированы на GitHub можете пропустить этот шаг. Создаем пользователя на  GitHub: [https://github.com/](https://github.com/) Заполните форму регистрации и убедитесь, что вы подтвердили свой адрес электронной почты.
 
-## Create your App repository
+## Создайте свой репозиторий приложений
 
-After logging in to GitHub. Click on the `Start a project` button, and name the repository `ng-girls-todo` or any other name you like.
+После входа на GitHub. Нажмите кнопку  `Start a project` , и назовите репозиторий `ng-girls-todo` или любое другое имя, которое вам нравится.
 
-## Connecting your repository
+## Подключение к репозиторию
 
-Commit all your changes by runing this command in your project directory.
+Зафиксируйте все изменения, выполнив эту команду в каталоге проекта.
 
 ```text
 git add -A && git commit -m "Your Message"
 ```
 
-Run the following command to connect your code to your repository. make sure to replace the {YOUR\_USERNAME} and {YOUR\_REPO} with your github username and repository name.
-
+Выполните следующую команду для подключения вашего кода к репозиторию. Убедитесь, что заменили {YOUR\_USERNAME} и {YOUR\_REPO} на Ваше имя пользователя и название репозитория на github.
 ```text
 git remote add origin https://github.com/{YOUR_USERNAME}/{YOUR_REPO}.git
 git push -u origin master
 ```
 
-## Deploying to GitHub Pages
-
-First install angular-cli-ghpages.
+## Разворачиваем GitHub Pages
+Для начала установите angular-cli-ghpages.
 
 ```text
 npm i -g angular-cli-ghpages
 ```
 
-Then simply run:
+Затем просто запустите:
 
 ```text
 ng build --prod --base-href="/[your-repo-name]/"
 angular-cli-ghpages
 ```
 
-Your app will be available at \[[https://\[your-GH-username\].github.io/\[repo-name\]\(https://\[your-GH-username\].github.io/\[repo-name\)\](https://[your-GH-username].github.io/[repo-name]%28https://[your-GH-username].github.io/[repo-name%29\)\]
+Ваше приложение будет доступно по адресу \[[https://\[your-GH-username\].github.io/\[repo-name\]\(https://\[your-GH-username\].github.io/\[repo-name\)\](https://[your-GH-username].github.io/[repo-name]%28https://[your-GH-username].github.io/[repo-name%29\)\]
 
-For more information see [https://github.com/angular-buch/angular-cli-ghpages](https://github.com/angular-buch/angular-cli-ghpages).
+Для получения дополнительной информации смотрите [https://github.com/angular-buch/angular-cli-ghpages](https://github.com/angular-buch/angular-cli-ghpages).
 
-## Known Issues
+## Популярные ошибки
 
-On \(windows\) machines you probably run into an issue like the following:
+На \ (windows \) вы, возможно, столкнулись с проблемой, например:
 
 ```text
 An error occurred!
@@ -63,16 +61,16 @@ An error occurred!
     ...
 ```
 
-Try to debug it with `angular-cli-ghpages -S` . If you get the following error:
+Попробуйте отладить его с помощью  `angular-cli-ghpages -S` . Если вы получите следующую ошибку:
 
 ```text
 fatal: could not read Username for \'https://github.com\': No error\n',
 ```
 
-you can do the following
+вы можете сделать следующее
 
-1. Create a Personal Access Token here: [https://github.com/settings/tokens](https://github.com/settings/tokens)
-2. Run the following command and replace your token, organisation \(your user\), repository, username and email:
+1. Создайте токен личного доступа здесь: [https://github.com/settings/tokens](https://github.com/settings/tokens)
+2. Выполните следующую команду и замените токен, организацию \ (ваш пользователь \), репозиторий, имя пользователя и адрес электронной почты:
 
    ```text
    angular-cli-ghpages --repo=https://<personal-access-token>@github.com/organisation/your-repo.git --name="Displayed Username" --email=mail@example.org
