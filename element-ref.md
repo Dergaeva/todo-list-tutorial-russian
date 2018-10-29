@@ -1,6 +1,6 @@
-# Element ref - \#
+#Элемент ref - \#
 
-In the last chapter, we ended with our input component able to display and change the title of our todo item. `input.component.ts` should look like this:
+В последней главе мы закончили  компонент ввода,  который способный отображать и изменять заголовок нашего пункта todo. `input.component.ts` должен выглядеть так:
 
 {% code-tabs %}
 {% code-tabs-item title="src/app/input-button-unit/input-button-unit.component.ts" %}
@@ -40,7 +40,7 @@ export class InputButtonUnitComponent implements OnInit {
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-First let's remove a bit of the template that we don't need. Remove these lines:
+Сначала давайте удалим часть шаблона, который нам не нужен. Удалите эти строки:
 
 {% code-tabs %}
 {% code-tabs-item title="remove this from src/app/input-button-unit/input-button-unit.component.ts" %}
@@ -53,11 +53,11 @@ First let's remove a bit of the template that we don't need. Remove these lines:
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-Now we want to take the value of the input \(that the user typed\) and change the title when we press the `Save` button.
+Теперь мы хотим взять значение ввода \(которое пользователь набрал\) и изменить заголовок, при клике на кнопку «Сохранить».
 
-We already know how to create a button and react to clicking on it. We now need to pass to the method some data from a different element. We want to use the `input` element's value from inside the `button` element.
+Мы уже знаем, как создавать кнопку и отлаживать ее действия при клике. Теперь нам нужно передать методу некоторые данные из другого элемента. Будем использовать `input` значения элемента изнутри `button` элемента.
 
-Angular helps us do exactly that. **We can store a reference to the element we want in a variable with the name we choose,** for example `inputElementRef`, **using a simple syntax - a hash.** Add `#inputElementRef` to the `input` element, and use it in the `click` event of the button:
+Angular помогажет сделать именно это. **Мы можем хранить ссылку на элемент, который мы используем в переменной, с именем, которое мы выбираем,** например `inputElementRef`, **используя простой синтаксис - хэш.** Добавим `#inputElementRef` в `input` элемент, и используем его в событии  `click` для кнопки:
 
 {% code-tabs %}
 {% code-tabs-item title="src/app/input-button-unit/input-button-unit.component.ts" %}
@@ -75,21 +75,21 @@ template: `
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-Now we can use the value that the user entered in the `input` element in the method called when clicking the `Save` button!
+Теперь мы можем использовать значение, введенное пользователем в `input` элемент в методе, который вызывается при нажатии кнопки `Сохранить`!
 
-### What is that `#` we see?
+### Что означает `#`?
 
-Angular lets us define a new local variable named `inputElementRef` \(or any name you choose\) that holds a reference to the element we defined it on, and then use it any way we want. In our case, we use it to access the `value` property of the `input`.
+Angular позволяет определить новую локальную переменную с именем `inputElementRef` \(или любое имя, которое вы выберете\) который содержит ссылку на элемент, который мы определили, a затем использовать его в любое время. В нашем случае, мы испозуем его для достпупа к свойству `value` в `input`.
 
-Instead of hunting down the elements via a DOM query \(which is bad practice, as we discussed\), we now can put element references in the template and access each element we want declaratively.
+Вместо того, чтобы искать элементы спомощью запроса к DOM  \(что является плохой практикой, как мы обсуждали\), теперь мы можем поместить ссылки элементов в шаблон и получить доступ к каждому элементу, который мы хотим декларировать.
 
-Next, we'll build the list of todo items.
+Затем мы создадим список пунктов todo
 
-## Explore the element reference
+## Исследуйте ссылку на элемент
 
-Just like we did in the previous chapter, when we logged $event, you can do the same with `#inputElementRef`. 
+Как и в предыдущей главе, когда мы регистрировали $event, можем сделать тоже самое для `#inputElementRef`. 
 
-![lab-icon](.gitbook/assets/lab%20%283%29.jpg) **Playground:** Change the method `changeTitle` so it will receive the whole element reference and log it to the console:
+![lab-icon](.gitbook/assets/lab%20%283%29.jpg) **Playground:** Измените метод `changeTitle`, чтобы он получил всю ссылку на элемент и отобразил ее в консоли:
 
 {% code-tabs %}
 {% code-tabs-item title="src/app/input-button-unit/input-button-unit.component.ts" %}
@@ -112,9 +112,9 @@ changeTitle(inputElementReference) {
 }
 ```
 
-Don't forget to put the code back the way it was after you're finished experimenting! It's best to pass to a method exactly the value it needs, instead of the whole object.
+Не забудьте вернуть код после того, как закончите эксперементоровать! Лучше всего передать методу именно то значение, которое ему нужно, вместо всего объекта.
 
-## Resources
+## Ресурсы
 
 [Angular Template Reference Variables](https://angular.io/guide/template-syntax#template-reference-variables--var-)
 
